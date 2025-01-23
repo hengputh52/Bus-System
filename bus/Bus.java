@@ -12,7 +12,7 @@ public class Bus {
         System.out.println("Bus Destination: " + a.Destination);
         */
         System.out.println("Welcome to Sabay Bus Ticket");
-        int choice;
+        
 
         do {
             System.out.println("1. Register");
