@@ -1,12 +1,12 @@
 package bus;
 
 public class BusBooking {
-    String BookingID;  //generated ID
-    String CustomerID; //generated ID
-    String BusID;
-    String RouteID;
-    String PickupStopID;
-    String DropStopID;
+    static int BookingID = 0;  //generated ID
+    int CustomerID; //generated ID
+    int BusID;
+    int RouteID;
+    int PickupStopID;
+    int DropStopID;
     String BookingTime;
     String TravelDate;
     String ReturnDate;
@@ -14,11 +14,8 @@ public class BusBooking {
     int Total_Seat;
 
 
-
-
-
-    public BusBooking(String bookingID, String customerID, String busID, String routeID, String pickupStopID, String dropStopID, String bookingTime, String travelDate, String returnDate, String ticketType, int total_Seat) {
-        BookingID = bookingID;
+    public BusBooking(int bookingID, int customerID, int busID, int routeID, int pickupStopID, int dropStopID, String bookingTime, String travelDate, String returnDate, String ticketType, int total_Seat) {
+        BookingID = bookingID + 1;
         CustomerID = customerID;
         BusID = busID;
         RouteID = routeID;

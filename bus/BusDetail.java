@@ -1,13 +1,13 @@
 package bus;
 
 public class BusDetail {
-    String BusID;
+    static int BusID;
     String BusNumber;
     String BusType;
     int TotalSeat;
 
-    public BusDetail(String busID, String busNumber, String busType, int totalSeat) {
-        BusID = busID;
+    public BusDetail(int BusID, String busNumber, String busType, int totalSeat) {
+        BusID = BusID + 1;
         BusNumber = busNumber;
         BusType = busType;
         TotalSeat = totalSeat;
