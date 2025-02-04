@@ -14,8 +14,8 @@ public class BusBooking {
     int Total_Seat;
 
 
-    public BusBooking(int bookingID, int customerID, int busID, int routeID, int pickupStopID, int dropStopID, String bookingTime, String travelDate, String returnDate, String ticketType, int total_Seat) {
-        BookingID = bookingID + 1;
+    public BusBooking(int BookingID, int customerID, int busID, int routeID, int pickupStopID, int dropStopID, String bookingTime, String travelDate, String returnDate, String ticketType, int total_Seat) {
+        BookingID = BookingID + 1;
         CustomerID = customerID;
         BusID = busID;
         RouteID = routeID;
@@ -28,8 +28,8 @@ public class BusBooking {
         Total_Seat = total_Seat;
     }
 
-    public BusBooking(String bookingID, String customerID, String busID, String routeID, String pickupStopID, String dropStopID, String bookingTime, String travelDate, String ticketType, int total_Seat) {
-        BookingID = bookingID;
+    public BusBooking(int BookingID, int customerID, int busID, int routeID, int pickupStopID, int dropStopID, String bookingTime, String travelDate, String ticketType, int total_Seat) {
+        BookingID = BookingID + 1;
         CustomerID = customerID;
         BusID = busID;
         RouteID = routeID;
