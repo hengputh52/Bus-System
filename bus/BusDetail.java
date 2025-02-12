@@ -18,9 +18,7 @@ public class BusDetail {
         TotalSeat = totalSeat;
     }
 
-    public static int getBusCount() {
-        return BusCount;
-    }
+
 
     public int getBusID() {
         return BusID;

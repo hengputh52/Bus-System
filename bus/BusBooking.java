@@ -2,7 +2,7 @@ package bus;
 
 import java.util.ArrayList;
 
-public class BusBooking {
+public class BusBooking implements Booking {
     private static int Booking = 0;  
     private int BookingID;
     private int CustomerID; 
@@ -45,51 +45,58 @@ public class BusBooking {
         this.Total_Seat = Total_Seat;
     
     }
-
-    public static int getBooking() {
-        return Booking;
-    }
-
+  
+    @Override
     public int getBookingID() {
         return BookingID;
     }
 
+    @Override
     public int getCustomerID() {
         return CustomerID;
     }
 
+    @Override
     public int getBusID() {
         return BusID;
     }
 
+    @Override
     public int getRouteID() {
         return RouteID;
     }
 
+    @Override
     public int getPickupStopID() {
         return PickupStopID;
     }
 
+    @Override
     public int getDropStopID() {
         return DropStopID;
     }
 
+    @Override
     public String getBookingTime() {
         return BookingTime;
     }
 
+    @Override
     public String getTravelDate() {
         return TravelDate;
     }
 
+    @Override
     public String getReturnDate() {
         return ReturnDate;
     }
 
+    @Override
     public String getTicketType() {
         return TicketType;
     }
 
+    @Override
     public int getTotal_Seat() {
         return Total_Seat;
     }
@@ -108,10 +115,10 @@ public class BusBooking {
 
     @Override
     public String toString() {
-        return "BusBooking [BookingID=" + BookingID + ", CustomerID=" + CustomerID + ", BusID=" + BusID + ", RouteID="
-                + RouteID + ", PickupStopID=" + PickupStopID + ", DropStopID=" + DropStopID + ", BookingTime="
-                + BookingTime + ", TravelDate=" + TravelDate + ", ReturnDate=" + ReturnDate + ", TicketType="
-                + TicketType + ", Total_Seat=" + Total_Seat + ", busBooking=" + busBooking + "]";
+        return "BusBooking \nBookingID=" + BookingID + ", \nCustomerID=" + CustomerID + ", \nBusID=" + BusID + ", \nRouteID="
+                + RouteID + ", \nPickupStopID=" + PickupStopID + ", \nDropStopID=" + DropStopID + ", \nBookingTime="
+                + BookingTime + ", \nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTicketType="
+                + TicketType + ", \nTotal_Seat=" + Total_Seat;
     }
 
     
