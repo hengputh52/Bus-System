@@ -12,6 +12,6 @@ public class Register {
         Age = age;
         Gender = gender;
         Telephone = telephone;
-        Address = address;s
+        Address = address;
     }
 }
