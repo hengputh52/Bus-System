@@ -34,7 +34,7 @@ public class Seats implements SeatsInfo {
         System.out.println("Seat Number: " + Seats.seatNumber); 
         System.out.println("Seat Type: " + seatType);
         System.out.println("Price: " + price);
-        System.out.println("Booking ID: " + (bookingID == null ? "Not Booked" : bookingID));
+        System.out.println("Booking ID: " + bookingID);
         System.out.println("Seat features: ");
         for (String feature : seatFeatures) {
             System.out.println(" - " + feature);
@@ -82,7 +82,7 @@ public class Seats implements SeatsInfo {
             String seatID = scanner.nextLine();
 
             if (seatID.equalsIgnoreCase("exit")) {
-                break; // Exit the loop if the user types 'exit'
+                break; 
             }
 
             System.out.print("Seat Number: ");
@@ -109,18 +109,17 @@ public class Seats implements SeatsInfo {
 
             seat.displaySeatInfo();
 
-            displayAvailableSeats();
+           
 
-            // Book the seat
             System.out.print("\nEnter Booking ID to book the seat: ");
             String bookingID = scanner.nextLine();
             seat.bookSeat(bookingID);
 
-            // Display updated seat information
             seat.displaySeatInfo();
+            displayAvailableSeats();
+
         }
 
-        // Display all seats in the list
         System.out.println("\nAll Seats:");
         for (Seats seat : seatsList) {
             seat.displaySeatInfo();
