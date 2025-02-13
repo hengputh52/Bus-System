@@ -46,59 +46,70 @@ public class BusBooking implements Booking {
     
     }
   
-    @Override
+    
     public int getBookingID() {
         return BookingID;
     }
 
-    @Override
+    
     public int getCustomerID() {
         return CustomerID;
     }
 
-    @Override
+    
     public int getBusID() {
         return BusID;
     }
 
-    @Override
+    
     public int getRouteID() {
         return RouteID;
     }
 
-    @Override
+    
     public int getPickupStopID() {
         return PickupStopID;
     }
 
-    @Override
+    
     public int getDropStopID() {
         return DropStopID;
     }
 
-    @Override
+    
     public String getBookingTime() {
         return BookingTime;
     }
 
-    @Override
+    
     public String getTravelDate() {
         return TravelDate;
     }
 
-    @Override
+    
     public String getReturnDate() {
         return ReturnDate;
     }
 
-    @Override
+    
     public String getTicketType() {
         return TicketType;
     }
 
-    @Override
+    
     public int getTotal_Seat() {
         return Total_Seat;
+    }
+    @Override
+    public boolean BookTicket() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean CancelTicket() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
     @Override
