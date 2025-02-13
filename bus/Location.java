@@ -3,13 +3,13 @@ package bus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Location {
+public class Location implements ILocation {
     String locationName;
     String city;
     String state;
     String country;
     static int totalLocation = 0;
-    int locationID;
+    private int locationID;
 
 
     private static List<Location> locationsList = new ArrayList<>();
