@@ -1,4 +1,6 @@
+
 package bus;
+
 public class Payment {
     // Private fields for payment information
     private String paymentID;
