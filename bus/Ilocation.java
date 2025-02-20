@@ -1,5 +1,7 @@
 package bus;
 
+
+
 import java.util.List;
 
 public interface ILocation {

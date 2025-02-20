@@ -4,7 +4,7 @@ public class BusVIP extends BusDetail {
     private String vipServices;
 
     public BusVIP(String busNumber, String busType, int totalSeat, String vipServices) {
-        super(busNumber, busType, totalSeat);
+        super(busNumber, totalSeat);
         this.vipServices = vipServices;
     }
 
@@ -18,7 +18,7 @@ public class BusVIP extends BusDetail {
 
     @Override
     public String toString() {
-        return "BusVIP [BusID=" + getBusID() + ", BusNumber=" + getBusNumber() + ", BusType=" + getBusType() + ", TotalSeat=" + getTotalSeat() + ", VIP Services=" + vipServices + "]";
+        return "BusVIP [BusID=" + getBusID() + ", BusNumber=" + getBusNumber() + ", TotalSeat=" + getTotalSeat() + ", VIP Services=" + vipServices + "]";
     }
     @Override
     public boolean equals(Object obj) {

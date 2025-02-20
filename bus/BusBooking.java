@@ -13,12 +13,11 @@ public class BusBooking implements Booking {
     private String BookingTime;
     private String TravelDate;
     private String ReturnDate;
-    private String TicketType;
     private int Total_Seat;
 
-    ArrayList<BusBooking> busBooking = new ArrayList<BusBooking>();
+   static ArrayList<BusBooking> busBooking = new ArrayList<BusBooking>();
   
-    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, String TicketType, int Total_Seat) {
+    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, int Total_Seat) {
         BookingID = ++Booking;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
@@ -28,11 +27,11 @@ public class BusBooking implements Booking {
         this.BookingTime = BookingTime;
         this.TravelDate = TravelDate;
         this.ReturnDate = ReturnDate;
-        this.TicketType = TicketType;
         this.Total_Seat = Total_Seat;
+        busBooking.add(this);
     }
 
-    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String TicketType, int Total_Seat) {
+    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, int Total_Seat) {
         BookingID = BookingID + 1;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
@@ -41,8 +40,8 @@ public class BusBooking implements Booking {
         this.DropStopID = DropStopID;
         this.BookingTime = BookingTime;
         this.TravelDate = TravelDate;
-        this.TicketType = TicketType;
         this.Total_Seat = Total_Seat;
+        busBooking.add(this);
     
     }
   
@@ -91,25 +90,31 @@ public class BusBooking implements Booking {
         return ReturnDate;
     }
 
-    
-    public String getTicketType() {
-        return TicketType;
-    }
 
     
     public int getTotal_Seat() {
         return Total_Seat;
     }
+
+    public static ArrayList<BusBooking> getBusBooking() {
+        return busBooking;
+    }
     @Override
-    public boolean BookTicket() {
+    public void BookTicket() {
         // TODO Auto-generated method stub
-        return true;
+        
     }
 
     @Override
-    public boolean CancelTicket() {
+    public boolean CancelTicket(int bookingID) {
         // TODO Auto-generated method stub
-        return true;
+        for (BusBooking booking : busBooking) {
+            if (booking.getBookingID() == bookingID) {
+                busBooking.remove(bookingID);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -128,10 +133,10 @@ public class BusBooking implements Booking {
     public String toString() {
         return "BusBooking \nBookingID=" + BookingID + ", \nCustomerID=" + CustomerID + ", \nBusID=" + BusID + ", \nRouteID="
                 + RouteID + ", \nPickupStopID=" + PickupStopID + ", \nDropStopID=" + DropStopID + ", \nBookingTime="
-                + BookingTime + ", \nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTicketType="
-                + TicketType + ", \nTotal_Seat=" + Total_Seat;
+                + BookingTime + ", \nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTotal_Seat=" + Total_Seat;
     }
 
     
     
 }
+

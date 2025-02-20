@@ -1,6 +1,5 @@
 package bus;
 public interface Booking {
-    boolean BookTicket();
-    boolean CancelTicket();
-
+    void BookTicket();
+    boolean CancelTicket(int BookingID);
 }

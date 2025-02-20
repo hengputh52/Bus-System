@@ -6,15 +6,13 @@ public class BusDetail {
     private static int BusCount = 0;
     private int BusID;
     private String BusNumber;
-    private String BusType;
     private int TotalSeat;
 
-    ArrayList<BusDetail> busDetail = new ArrayList<BusDetail>();
+    static ArrayList<BusDetail> busDetail = new ArrayList<BusDetail>();
 
-    public BusDetail(String busNumber, String busType, int totalSeat) {
+    public BusDetail(String busNumber,int totalSeat) {
         BusID = ++BusCount;
         BusNumber = busNumber;
-        BusType = busType;
         TotalSeat = totalSeat;
     }
 
@@ -28,9 +26,7 @@ public class BusDetail {
         return BusNumber;
     }
 
-    public String getBusType() {
-        return BusType;
-    }
+   
 
     public int getTotalSeat() {
         return TotalSeat;
@@ -48,7 +44,7 @@ public class BusDetail {
 
     @Override
     public String toString() {
-        return "BusDetail [BusID=" + BusID + ", BusNumber=" + BusNumber + ", BusType=" + BusType + ", TotalSeat="
+        return "BusDetail [BusID=" + BusID + ", BusNumber=" + BusNumber + ", TotalSeat="
                 + TotalSeat + ", busDetail=" + busDetail + "]";
     }
 
