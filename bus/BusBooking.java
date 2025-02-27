@@ -18,7 +18,11 @@ public class BusBooking implements Booking {
    static ArrayList<BusBooking> busBooking = new ArrayList<BusBooking>();
   
     public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, int Total_Seat) {
-        BookingID = ++Booking;
+        if(Total_Seat > 40 || Total_Seat < 0) {
+            throw new IllegalArgumentException("Total seat must be more than 0 and less than 40");
+        }
+
+        this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
         this.RouteID = RouteID;
@@ -32,7 +36,13 @@ public class BusBooking implements Booking {
     }
 
     public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, int Total_Seat) {
-        BookingID = BookingID + 1;
+        if(Total_Seat > 40) {
+            throw new IllegalArgumentException("Total seat must be less than 40");
+        }
+        else if(Total_Seat < 0) {
+            throw new IllegalArgumentException("Total seat must be greater than 0");
+        }
+        this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
         this.RouteID = RouteID;
@@ -46,57 +56,57 @@ public class BusBooking implements Booking {
     }
   
     
-    public int getBookingID() {
+    protected int getBookingID() {
         return BookingID;
     }
 
     
-    public int getCustomerID() {
+    protected int getCustomerID() {
         return CustomerID;
     }
 
     
-    public int getBusID() {
+    protected int getBusID() {
         return BusID;
     }
 
     
-    public int getRouteID() {
+    protected int getRouteID() {
         return RouteID;
     }
 
     
-    public int getPickupStopID() {
+    protected int getPickupStopID() {
         return PickupStopID;
     }
 
     
-    public int getDropStopID() {
+    protected int getDropStopID() {
         return DropStopID;
     }
 
     
-    public String getBookingTime() {
+    protected String getBookingTime() {
         return BookingTime;
     }
 
     
-    public String getTravelDate() {
+    protected String getTravelDate() {
         return TravelDate;
     }
 
     
-    public String getReturnDate() {
+    protected String getReturnDate() {
         return ReturnDate;
     }
 
 
     
-    public int getTotal_Seat() {
+    protected int getTotal_Seat() {
         return Total_Seat;
     }
 
-    public static ArrayList<BusBooking> getBusBooking() {
+    protected static ArrayList<BusBooking> getBusBooking() {
         return busBooking;
     }
     @Override

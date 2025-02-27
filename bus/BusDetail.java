@@ -11,24 +11,24 @@ public class BusDetail {
     static ArrayList<BusDetail> busDetail = new ArrayList<BusDetail>();
 
     public BusDetail(String busNumber,int totalSeat) {
-        BusID = ++BusCount;
-        BusNumber = busNumber;
-        TotalSeat = totalSeat;
+        this.BusID = ++BusCount;
+        this.BusNumber = busNumber;
+        this.TotalSeat = totalSeat;
     }
 
 
 
-    public int getBusID() {
+    protected int getBusID() {
         return BusID;
     }
 
-    public String getBusNumber() {
+    protected String getBusNumber() {
         return BusNumber;
     }
 
    
 
-    public int getTotalSeat() {
+    protected int getTotalSeat() {
         return TotalSeat;
     }
 

@@ -8,11 +8,11 @@ public class BusVIP extends BusDetail {
         this.vipServices = vipServices;
     }
 
-    public String getVipServices() {
+    protected String getVipServices() {
         return vipServices;
     }
 
-    public void setVipServices(String vipServices) {
+    protected void setVipServices(String vipServices) {
         this.vipServices = vipServices;
     }
 
