@@ -17,11 +17,7 @@ public class BusBooking implements Booking {
 
    static ArrayList<BusBooking> busBooking = new ArrayList<BusBooking>();
   
-    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, int Total_Seat) {
-        if(Total_Seat > 40 || Total_Seat < 0) {
-            throw new IllegalArgumentException("Total seat must be more than 0 and less than 40");
-        }
-
+    public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, int Total_Seat){
         this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
@@ -35,13 +31,8 @@ public class BusBooking implements Booking {
         busBooking.add(this);
     }
 
+
     public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, int Total_Seat) {
-        if(Total_Seat > 40) {
-            throw new IllegalArgumentException("Total seat must be less than 40");
-        }
-        else if(Total_Seat < 0) {
-            throw new IllegalArgumentException("Total seat must be greater than 0");
-        }
         this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
         this.BusID = BusID;
@@ -116,10 +107,10 @@ public class BusBooking implements Booking {
     }
 
     @Override
-    public boolean CancelTicket(int bookingID) {
+    public boolean CancelTicket(int bookingID, int customerID) {
         // TODO Auto-generated method stub
         for (BusBooking booking : busBooking) {
-            if (booking.getBookingID() == bookingID) {
+            if (booking.getBookingID() == bookingID && booking.getCustomerID() == customerID) {
                 busBooking.remove(bookingID);
                 return true;
             }
@@ -132,7 +123,7 @@ public class BusBooking implements Booking {
         // TODO Auto-generated method stub
         if (obj instanceof BusBooking) {
             BusBooking busBooking = (BusBooking) obj;
-            if (this.BookingID == busBooking.BookingID) {
+            if (this.BookingID == busBooking.BookingID && this.CustomerID == busBooking.CustomerID) {
                 return true;
             }
         }

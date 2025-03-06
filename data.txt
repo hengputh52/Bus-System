@@ -1,0 +1,10 @@
+Customer ID: 1
+Bus ID: 1
+Route ID: 1
+Pickup Stop ID: 1
+Drop Stop ID: 1
+Booking Time: er
+Travel Date: er
+Return Date: er
+Total Seat: 2
+-----------------------------
