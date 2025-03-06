@@ -1,51 +1,54 @@
-
-package bus;
-
-public class Payment {
-    // Private fields for payment information
-    private String paymentID;
-    private String bookingID;
-    private double paymentAmount;
+public class Payment implements Pay {
+    private static int transactionCount = 0;
+    private double amount;
     private String paymentMethod;
+    private int transactionID;
 
-    // Constructor to initialize payment details
-    public Payment(String paymentID, String bookingID, double paymentAmount, String paymentMethod) {
-        this.paymentID = paymentID;
-        this.bookingID = bookingID;
-        this.paymentAmount = paymentAmount;
+    // Constructor
+    public Payment(double amount, String paymentMethod) throws InvalidPaymentException {
+        if (amount <= 0) {
+            throw InvalidPaymentException.invalidAmount();
+        }
+        if (paymentMethod == null || paymentMethod.isEmpty()) {
+            throw InvalidPaymentException.invalidPaymentMethod();
+        }
+        
+        this.amount = amount;
         this.paymentMethod = paymentMethod;
+        this.transactionID = ++transactionCount; // Unique transaction ID
     }
 
-    // Getters and Setters
-    public String getPaymentID() {
-        return paymentID;
+    // Method to process payment
+    @Override
+    public void processPayment(double amount) throws InvalidPaymentException {
+        if (amount <= 0) {
+            throw InvalidPaymentException.invalidAmount();
+        }
+        System.out.println("Processing payment of amount: $" + amount + " via " + paymentMethod);
     }
 
-    public String getBookingID() {
-        return bookingID;
+    // Method to cancel payment
+    @Override
+    public void cancelPayment() {
+        System.out.println("Payment of $" + amount + " has been cancelled.");
     }
 
-    public double getPaymentAmount() {
-        return paymentAmount;
+    // Getter methods for amount and paymentMethod
+    public double getAmount() {
+        return amount;
     }
 
     public String getPaymentMethod() {
         return paymentMethod;
     }
 
-    // Method to process payment (prints out the details)
-    public void processPayment() {
-        System.out.println("Processing payment of " + paymentAmount + " using " + paymentMethod);
-    }
-
-    // Override toString() to return payment details
+    // toString method to display payment details
     @Override
     public String toString() {
         return "Payment{" +
-                "paymentID='" + paymentID + '\'' +
-                ", bookingID='" + bookingID + '\'' +
-                ", paymentAmount=" + paymentAmount +
+                "amount=" + amount +
                 ", paymentMethod='" + paymentMethod + '\'' +
+                ", transactionID=" + transactionID +
                 '}';
     }
 }
