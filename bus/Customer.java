@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Objects;
-package bus;
-
+packa
 // Customer class implementing Authenticates and BusBookingInterface
 public class Customer implements Authenticates, BusBookingInterface {
     protected int customerID;
