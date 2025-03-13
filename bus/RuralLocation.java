@@ -1,4 +1,5 @@
 package bus;
+
 class RuralLocation extends Location {
     private boolean hasTransportFacility;
 
