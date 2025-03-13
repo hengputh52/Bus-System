@@ -6,43 +6,47 @@ public class Bus {
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         try {
-            System.out.println("Enter Customer ID: ");
+            System.out.print("Enter Customer ID: ");
             int CustomerID = input.nextInt();
-            input.nextLine(); // Consume the newline character
+            
             IntegerInputOnlyException n = new IntegerInputOnlyException(CustomerID);
 
-            System.out.println("Enter Bus ID: ");
+            System.out.print("Enter Bus ID: ");
             int BusID = input.nextInt();
             input.nextLine(); // Consume the newline character
     
 
-            System.out.println("Enter Route ID: ");
+            System.out.print("Enter Route ID: ");
             int RouteID = input.nextInt();
             input.nextLine(); // Consume the newline character
 
-            System.out.println("Enter Pickup Stop ID: ");
+            System.out.print("Enter Pickup Stop ID: ");
             int PickupStopID = input.nextInt();
             input.nextLine(); // Consume the newline character
 
-            System.out.println("Enter Drop Stop ID: ");
+            System.out.print("Enter Drop Stop ID: ");
             int DropStopID = input.nextInt();
             input.nextLine(); // Consume the newline character
 
-            System.out.println("Enter Booking Time: ");
+            int[] inputInteger = {CustomerID,BusID,RouteID,PickupStopID,DropStopID};
+            CheckStringEmpty i = new CheckStringEmpty(inputInteger);
+        
+
+            System.out.print("Enter Booking Time: ");
             String BookingTime = input.nextLine();
             
 
-            System.out.println("Enter Travel Date: ");
+            System.out.print("Enter Travel Date: ");
             String TravelDate = input.nextLine();
             
 
-            System.out.println("Enter Return Date: ");
+            System.out.print("Enter Return Date: ");
             String ReturnDate = input.nextLine();
 
             String[] inputStrings = {BookingTime, TravelDate, ReturnDate};
             CheckStringEmpty cse = new CheckStringEmpty(inputStrings);
 
-            System.out.println("Enter Total Seat: ");
+            System.out.print("Enter Total Seat: ");
             int Total_Seat = input.nextInt();
             BookingException be = new BookingException(Total_Seat);
 
@@ -62,6 +66,7 @@ public class Bus {
         {
             System.out.println(e.getMessage());
         }
+        
         finally {
             System.out.println("Thank you for using our service");
             input.close();
