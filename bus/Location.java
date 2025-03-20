@@ -4,87 +4,69 @@ package bus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Location implements lLocation {
-    private String locationName;
-    private String city;
-    private String state;
-    private String country;
-    private int locationID;
-    
-    private static int totalLocation = 0;
-    private static List<Location> locationsList = new ArrayList<>();
+class Location implements LocationInfo {
+    private static int idCounter = 1;
+    private static int locationCount = 0;
+    private int id;
+    private String lName;
+    private String address;
 
-    public Location(String locationName, String city, String state, String country) {
-        if (locationName == null || locationName.isEmpty() ||
-            city == null || city.isEmpty() ||
-            state == null || state.isEmpty() ||
-            country == null || country.isEmpty()) {
-            throw new IllegalArgumentException("Location details cannot be empty.");
-        }
-        
-        this.locationName = locationName;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.locationID = ++totalLocation;
-        
-        locationsList.add(this);
+    // Static list to store all locations
+    private static List<Location> locationList = new ArrayList<>();
+
+    Location(String lName, String address) {
+        this.id = idCounter++;
+        this.lName = lName;
+        this.address = address;
+        locationList.add(this);
+        locationCount++;
     }
 
-    // Getters
-    public String getLocationName() { return locationName; }
-    public String getCity() { return city; }
-    public String getState() { return state; }
-    public String getCountry() { return country; }
-    public int getLocationID() { return locationID; }
-
-    // Setters
-    public void setLocationName(String locationName) { this.locationName = locationName; }
-    public void setCity(String city) { this.city = city; }
-    public void setState(String state) { this.state = state; }
-    public void setCountry(String country) { this.country = country; }
-
-    @Override
-    public List<Location> getAllLocations() {
-        return new ArrayList<>(locationsList);
+    public String toString() {
+        return "ID: " + id + ", Location: " + lName + ", Address: " + address;
     }
 
-    @Override
-    public Location getLocationById(int id) {
-        for (Location loc : locationsList) {
-            if (loc.locationID == id) {
+    protected int getId() {
+        return id;
+    }
+
+    protected String getlName() {
+        return lName;
+    }
+
+    protected String getAddress() {
+        return address;
+    }
+
+    // Method to get all stored locations
+    public static List<Location> getAllLocations() {
+        return locationList;
+    }
+
+    // Search location by ID
+    public static Location searchById(int searchId) {
+        for (Location loc : locationList) {
+            if (loc.id == searchId) {
                 return loc;
             }
         }
         return null;
     }
 
-    @Override
-    public boolean removeLocationById(int id) {
-        return locationsList.removeIf(loc -> loc.locationID == id);
-    }
-
-    // Search locations by city, state, or name
-    public static List<Location> searchLocations(String keyword) {
-        List<Location> results = new ArrayList<>();
-        for (Location loc : locationsList) {
-            if (loc.locationName.equalsIgnoreCase(keyword) || 
-                loc.city.equalsIgnoreCase(keyword) || 
-                loc.state.equalsIgnoreCase(keyword)) {
-                results.add(loc);
+    // Delete location by ID
+    public static boolean deleteById(int deleteId) {
+        for (Location loc : locationList) {
+            if (loc.id == deleteId) {
+                locationList.remove(loc);
+                locationCount--;
+                return true; 
             }
         }
-        return results;
+        return false; 
     }
 
-    @Override
-    public String toString() {
-        return "Location{" +
-                "ID=" + locationID +
-                ", Name='" + locationName + '\'' +
-                ", City='" + city + '\'' +
-                ", State='" + state + '\'' +
-                ", Country='" + country + '\'' +
-                '}';
+    // Method to get total number of locations
+    public static int getTotalLocations() {
+        return locationCount;
     }
 }
