@@ -1,3 +1,4 @@
+package bus;
 public class PremiumPayment extends Payment {
     private double discount;
 

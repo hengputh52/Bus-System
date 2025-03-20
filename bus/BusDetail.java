@@ -5,15 +5,14 @@ import java.util.ArrayList;
 public class BusDetail {
     private static int BusCount = 0;
     private int BusID;
-    private String BusNumber;
-    private int TotalSeat;
+    private int totalSeat;
+    private int availableSeat;
 
     static ArrayList<BusDetail> busDetail = new ArrayList<BusDetail>();
 
-    public BusDetail(String busNumber,int totalSeat) {
+    public BusDetail(int totalSeat) {
         this.BusID = ++BusCount;
-        this.BusNumber = busNumber;
-        this.TotalSeat = totalSeat;
+        this.totalSeat = totalSeat;
     }
 
 
@@ -22,14 +21,12 @@ public class BusDetail {
         return BusID;
     }
 
-    protected String getBusNumber() {
-        return BusNumber;
-    }
+    
 
    
 
     protected int getTotalSeat() {
-        return TotalSeat;
+        return totalSeat;
     }
 
     @Override

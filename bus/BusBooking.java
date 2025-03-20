@@ -6,11 +6,8 @@ public class BusBooking implements Booking {
     private static int Booking = 0;  
     private int BookingID;
     private int CustomerID; 
-    private int BusID;
-    private int RouteID;
     private int PickupStopID;
     private int DropStopID;
-    private String BookingTime;
     private String TravelDate;
     private String ReturnDate;
     private int Total_Seat;
@@ -20,11 +17,8 @@ public class BusBooking implements Booking {
     public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, String ReturnDate, int Total_Seat){
         this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
-        this.BusID = BusID;
-        this.RouteID = RouteID;
         this.PickupStopID = PickupStopID;
         this.DropStopID = DropStopID;
-        this.BookingTime = BookingTime;
         this.TravelDate = TravelDate;
         this.ReturnDate = ReturnDate;
         this.Total_Seat = Total_Seat;
@@ -132,9 +126,9 @@ public class BusBooking implements Booking {
 
     @Override
     public String toString() {
-        return "BusBooking \nBookingID=" + BookingID + ", \nCustomerID=" + CustomerID + ", \nBusID=" + BusID + ", \nRouteID="
-                + RouteID + ", \nPickupStopID=" + PickupStopID + ", \nDropStopID=" + DropStopID + ", \nBookingTime="
-                + BookingTime + ", \nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTotal_Seat=" + Total_Seat;
+        return "BusBooking \nBookingID=" + BookingID + ", \nCustomerID=" + CustomerID + ", \nRouteID="
+                + ", \nPickupStopID=" + PickupStopID + ", \nDropStopID=" + DropStopID + ", \nBookingTime="
+                + "\nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTotal_Seat=" + Total_Seat;
     }
 
     

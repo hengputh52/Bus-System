@@ -1,3 +1,4 @@
+package bus;
 public class PremiumCustomer extends Customer {
     private double discountRate;
 

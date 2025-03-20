@@ -1,75 +1,72 @@
 package bus;
 import java.util.Scanner;
-
+import javax.swing.JFrame;
+import java.awt.Color;
 public class Bus {
+    
     
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
-        try {
-            System.out.print("Enter Customer ID: ");
-            int CustomerID = input.nextInt();
+        Customer customer = new Customer("heng",  10, 'M', "12345", "heng", "pp","12345");
+        
+            System.out.println("1. sign up");
+            System.out.println("2.Log in");
+            System.out.println("3.exit");
+            System.out.print("enter your choice:");
+            int choice;
+            try{
+                choice = input.nextInt();
+                input.nextLine();
+            }
+            catch(Exception e)
+            {
+                System.out.println("invalid input");
+                input.nextLine();
+                return;
+            }
             
-            IntegerInputOnlyException n = new IntegerInputOnlyException(CustomerID);
+            switch(choice)
+            {
+                case 1: 
+                customer.signUp();
+                
+                System.out.println("1. Booking");
+                System.out.println("Cancel Booking");
+                System.out.println("View Booking History");
+                int option = input.nextInt();
+                switch (option) {
+                    case 1:
+                                            
+                        break;
+                
+                    default:
+                        break;
+                }
+                
+            
+                break;
+                case 2:
+                System.out.println("Enter username: ");
+                    String username = input.nextLine();
+                    System.out.println("Enter password: ");
+                    String password = input.nextLine();
 
-            System.out.print("Enter Bus ID: ");
-            int BusID = input.nextInt();
-            input.nextLine(); // Consume the newline character
-    
-
-            System.out.print("Enter Route ID: ");
-            int RouteID = input.nextInt();
-            input.nextLine(); // Consume the newline character
-
-            System.out.print("Enter Pickup Stop ID: ");
-            int PickupStopID = input.nextInt();
-            input.nextLine(); // Consume the newline character
-
-            System.out.print("Enter Drop Stop ID: ");
-            int DropStopID = input.nextInt();
-            input.nextLine(); // Consume the newline character
-
-            int[] inputInteger = {CustomerID,BusID,RouteID,PickupStopID,DropStopID};
-            CheckStringEmpty i = new CheckStringEmpty(inputInteger);
+                    // Call the login method
+                    customer.login(username, password);
+                break;
+                case 3:
+                System.out.println("exiting now");
+                input.close();
+                return;
+                
+            }
+            
         
 
-            System.out.print("Enter Booking Time: ");
-            String BookingTime = input.nextLine();
-            
 
-            System.out.print("Enter Travel Date: ");
-            String TravelDate = input.nextLine();
-            
-
-            System.out.print("Enter Return Date: ");
-            String ReturnDate = input.nextLine();
-
-            String[] inputStrings = {BookingTime, TravelDate, ReturnDate};
-            CheckStringEmpty cse = new CheckStringEmpty(inputStrings);
-
-            System.out.print("Enter Total Seat: ");
-            int Total_Seat = input.nextInt();
-            BookingException be = new BookingException(Total_Seat);
-
-            // Create a new BusBooking instance
-            BusBooking booking = new BusBooking(CustomerID, BusID, RouteID, PickupStopID, DropStopID, BookingTime, TravelDate, ReturnDate, Total_Seat);
-            System.out.println("Booking successful: " + booking);
-
-        } catch (BookingException e) {
-            System.out.println("Booking failed: " + e.getMessage());
-        }
         
-        catch (CheckStringEmpty e)
-        {
-            System.out.println(e.getMessage());
-        }
-        catch(IntegerInputOnlyException e)
-        {
-            System.out.println(e.getMessage());
-        }
         
-        finally {
-            System.out.println("Thank you for using our service");
-            input.close();
-        }
+        
+        
     }
 }

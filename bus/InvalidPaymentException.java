@@ -1,3 +1,4 @@
+package bus;
 public class InvalidPaymentException extends Exception {
     
     // Constructor with custom message

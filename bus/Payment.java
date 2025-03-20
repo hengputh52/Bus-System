@@ -1,3 +1,4 @@
+package bus;
 public class Payment implements Pay {
     private static int transactionCount = 0;
     private double amount;
