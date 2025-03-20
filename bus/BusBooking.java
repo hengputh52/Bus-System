@@ -1,8 +1,9 @@
 package bus;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class BusBooking implements Booking {
+public class BusBooking{
     private static int Booking = 0;  
     private int BookingID;
     private int CustomerID; 
@@ -29,11 +30,8 @@ public class BusBooking implements Booking {
     public BusBooking(int CustomerID, int BusID, int RouteID, int PickupStopID, int DropStopID, String BookingTime, String TravelDate, int Total_Seat) {
         this.BookingID = ++Booking;
         this.CustomerID = CustomerID;
-        this.BusID = BusID;
-        this.RouteID = RouteID;
         this.PickupStopID = PickupStopID;
         this.DropStopID = DropStopID;
-        this.BookingTime = BookingTime;
         this.TravelDate = TravelDate;
         this.Total_Seat = Total_Seat;
         busBooking.add(this);
@@ -50,15 +48,7 @@ public class BusBooking implements Booking {
         return CustomerID;
     }
 
-    
-    protected int getBusID() {
-        return BusID;
-    }
 
-    
-    protected int getRouteID() {
-        return RouteID;
-    }
 
     
     protected int getPickupStopID() {
@@ -69,12 +59,6 @@ public class BusBooking implements Booking {
     protected int getDropStopID() {
         return DropStopID;
     }
-
-    
-    protected String getBookingTime() {
-        return BookingTime;
-    }
-
     
     protected String getTravelDate() {
         return TravelDate;
@@ -94,11 +78,60 @@ public class BusBooking implements Booking {
     protected static ArrayList<BusBooking> getBusBooking() {
         return busBooking;
     }
-    @Override
-    public void BookTicket() {
-        // TODO Auto-generated method stub
-        
+@Override
+public void BookTicket() {
+    Scanner input = new Scanner(System.in);
+
+    try {
+        System.out.print("Enter Customer ID: ");
+        int customerID = input.nextInt();
+        input.nextLine(); // Consume the newline character
+
+        System.out.print("Enter Bus ID: ");
+        int busID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Route ID: ");
+        int routeID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Pickup Stop ID: ");
+        int pickupStopID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Drop Stop ID: ");
+        int dropStopID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Booking Time (e.g., 10:00 AM): ");
+        String bookingTime = input.nextLine();
+
+        System.out.print("Enter Travel Date (e.g., 2025-03-25): ");
+        String travelDate = input.nextLine();
+
+        System.out.print("Do you want to book a return ticket? (yes/no): ");
+        String returnOption = input.nextLine().trim().toLowerCase();
+
+        String returnDate = null;
+        if (returnOption.equals("yes")) {
+            System.out.print("Enter Return Date (e.g., 2025-03-30): ");
+            returnDate = input.nextLine();
+        }
+
+        System.out.print("Enter Total Seats to Book: ");
+        int totalSeats = input.nextInt();
+        input.nextLine();
+
+        // Create a new booking and add it to the list
+        BusBooking newBooking = new BusBooking(customerID, busID, routeID, pickupStopID, dropStopID, bookingTime, travelDate, returnDate, totalSeats);
+        busBooking.add(newBooking);
+
+        System.out.println("Booking successful! Your Booking ID is: " + newBooking.getBookingID());
+    } catch (Exception e) {
+        System.out.println("Error: Invalid input. Please try again.");
+        input.nextLine(); // Clear the invalid input
     }
+}
 
     @Override
     public boolean CancelTicket(int bookingID, int customerID) {

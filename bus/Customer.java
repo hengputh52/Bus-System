@@ -16,6 +16,8 @@ public class Customer implements Authenticates, Booking {
     private static int customerCount = 0;
     private static ArrayList<Customer> customerList = new ArrayList<>();
     private ArrayList<String> bookingHistory = new ArrayList<>();
+    private static ArrayList<BusBooking> busBooking = new ArrayList<>();
+    
 
     // Constructor
     public Customer(String username, int age, char gender, String phone, String email, String address, String password) {
@@ -39,6 +41,15 @@ public class Customer implements Authenticates, Booking {
     }
 
 
+
+    public static ArrayList<BusBooking> getBusBooking() {
+        return busBooking;
+    }
+
+protected int getCustomerID()
+{
+    return customerID;
+}
     protected static ArrayList<Customer> getCustomer()
     {
         return customerList;
@@ -132,11 +143,11 @@ public void signUp() {
 }
 
 @Override
-public boolean login(String username, String password) {
+public boolean login(String email, String password) {
     try {
         for (Customer customer : customerList) {
-            if (customer.username.equals(username) && customer.password.equals(password)) {
-                System.out.println("Login successful for " + username);
+            if (customer.email.equals(email) && customer.password.equals(password)) {
+                System.out.println("Login successful for " + email);
                 return true;
             }
         }
@@ -149,35 +160,101 @@ public boolean login(String username, String password) {
     }
 }
 
+@Override
+public void BookTicket() {
+    Scanner input = new Scanner(System.in);
 
-    // Implementing BusBookingInterface Methods
+    try {
+        System.out.print("Enter Bus ID: ");
+        int busID = input.nextInt();
+        input.nextLine(); // Consume the newline character
+
+        System.out.print("Enter Route ID: ");
+        int routeID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Pickup Stop ID: ");
+        int pickupStopID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Drop Stop ID: ");
+        int dropStopID = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Enter Booking Time (e.g., 10:00 AM): ");
+        String bookingTime = input.nextLine();
+
+        System.out.print("Enter Travel Date (e.g., 2025-03-25): ");
+        String travelDate = input.nextLine();
+
+        System.out.print("Do you want to book a return ticket? (yes/no): ");
+        String returnOption = input.nextLine().trim().toLowerCase();
+
+        String returnDate = null;
+        if (returnOption.equals("yes")) {
+            System.out.print("Enter Return Date (e.g., 2025-03-30): ");
+            returnDate = input.nextLine();
+        }
+
+        System.out.print("Enter Total Seats to Book: ");
+        int totalSeats = input.nextInt();
+        input.nextLine();
+
+        // Create a new booking and add it to the BusBooking list
+        BusBooking newBooking = new BusBooking(customerID, busID, routeID, pickupStopID, dropStopID, bookingTime, travelDate, returnDate, totalSeats);
+        BusBooking.getBusBooking().add(newBooking); // Add to the BusBooking list
+
+        System.out.println("Booking successful! Your Booking ID is: " + newBooking.getBookingID());
+    } catch (Exception e) {
+        System.out.println("Error: Invalid input. Please try again.");
+        input.nextLine(); // Clear the invalid input
+    }
+}
+
     @Override
-    public void bookTicket(int busID, String destination, String travelDate) {
+    public boolean CancelBooking(int customerID, int bookingID) {
         try {
-            if (busID <= 0 || destination == null || travelDate == null) {
-                throw new InvalidCustomerDataException("Invalid booking details");
+            // Check if the booking ID is valid
+            boolean bookingFound = false;
+    
+            for (BusBooking booking : BusBooking.getBusBooking()) {
+                if (booking.getBookingID() == bookingID && booking.getCustomerID() == customerID) {
+                    BusBooking.getBusBooking().remove(booking); // Remove the booking
+                    System.out.println("Booking with ID " + bookingID + " has been canceled for customer " + username);
+                    bookingFound = true;
+                    break;
+                }
             }
-            String bookingDetails = "Bus " + busID + " to " + destination + " on " + travelDate;
-            bookingHistory.add(bookingDetails);
-            System.out.println(username + " booked a ticket. " + bookingDetails);
-        } catch (InvalidCustomerDataException e) {
-            System.out.println(e.getMessage());
+    
+            if (!bookingFound) {
+                System.out.println("Error: Booking ID not found or does not belong to the customer.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Invalid input. Please enter a valid Booking ID.");
         }
     }
 
     @Override
-    public void cancelBooking(int bookingID) {
-        if (bookingID >= 0 && bookingID < bookingHistory.size()) {
-            System.out.println("Booking " + bookingID + " canceled for " + username);
-            bookingHistory.remove(bookingID);
-        } else {
-            System.out.println("Booking ID not found.");
+    public void ViewHistory() {
+        try {
+            System.out.println("Booking History for " + username + ":");
+    
+            boolean hasBookings = false;
+    
+            // Iterate through the BusBooking list to find bookings for this customer
+            for (BusBooking booking : BusBooking.getBusBooking()) {
+                if (booking.getCustomerID() == this.customerID) {
+                    System.out.println(booking);
+                    hasBookings = true;
+                }
+            }
+    
+            if (!hasBookings) {
+                System.out.println("No bookings found for this customer.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Unable to retrieve booking history.");
         }
-    }
-
-    @Override
-    public void viewBookingHistory() {
-        System.out.println("Booking History for " + username + ": " + bookingHistory);
     }
 
     // Logout method
